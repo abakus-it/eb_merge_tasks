@@ -3,8 +3,10 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import UserError, ValidationError
+
 import logging
 _logger = logging.getLogger('base.task.merge.automatic.wizard')
+
 class MergeTasksLine(models.TransientModel):
 
     _name = 'base.task.merge.line'
@@ -27,7 +29,7 @@ class EbMergeTasks(models.TransientModel):
             res['task_ids'] = active_ids
         return res
 
-    task_ids = fields.Many2many('project.task', string='Tasks')#'merge_tasks_rel', 'merge_id', 'task_id',)
+    task_ids = fields.Many2many('project.task', string='Tasks')
     user_id = fields.Many2one('res.users', 'Assigned to', index=True)
     dst_task_id = fields.Many2one('project.task', string='Destination Task')
     dst_project = fields.Many2one('project.project', string = "Project")
